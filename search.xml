@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2F2018%2F04%2F25%2Ftest%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2018%2F04%2F25%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[数据库连接池]]></title>
+    <url>%2F2018%2F02%2F25%2Fdatabase-pool%2F</url>
+    <content type="text"><![CDATA[早期数据库连接1、原理 一般来说，java应用程序访问数据库的过程是： 装载数据库驱动程序 通过jdbc建立数据库连接 访问数据库，执行sql语句 断开数据库连接 2、 代码 123456789101112131415161718Public void FindAllUsers()&#123; //1、装载sqlserver驱动对象 DriverManager.registerDriver(new SQLServerDriver()); //2、通过JDBC建立数据库连接 Connection con =DriverManager.getConnection("jdbc:sqlserver://192.168.2.6:1433;DatabaseName=customer", "sa", "123"); //3、创建状态 Statement state =con.createStatement(); //4、查询数据库并返回结果 ResultSet result =state.executeQuery("select * from users"); //5、输出查询结果 while(result.next())&#123; System.out.println(result.getString("email")); &#125; //6、断开数据库连接 result.close(); state.close(); con.close(); &#125; 3 、分析 程序开发过程中，存在很多问题：首先，每一次web请求都要建立一次数据库连接。建立连接是一个费时的活动，每次都得花费0.05s～1s的时间，而且系统还要分配内存资源。这个时间对于一次或几次数据库操作，或许感觉不出系统有多大的开销。可是对于现在的web应用，尤其是大型电子商务网站，同时有几百人甚至几千人在线是很正常的事。在这种情况下，频繁的进行数据库连接操作势必占用很多的系统资源，网站的响应速度必定下降，严重的甚至会造成服务器的崩溃。不是危言耸听，这就是制约某些电子商务网站发展的技术瓶颈问题。其次，对于每一次数据库连接，使用完后都得断开。否则，如果程序出现异常而未能关闭，将会导致数据库系统中的内存泄漏，最终将不得不重启数据库。还有，这种开发不能控制被创建的连接对象数，系统资源会被毫无顾及的分配出去，如连接过多，也可能导致内存泄漏，服务器崩溃。]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[广度优先算法（BFS）]]></title>
+    <url>%2F2018%2F01%2F12%2FBFS%2F</url>
+    <content type="text"><![CDATA[前言广度优先搜索（也称宽度优先搜索，缩写BFS，以下采用广度来描述）是连通图的一种遍历策略。因为它的思想是从一个顶点V0开始，辐射状地优先遍历其周围较广的区域，故得名。 A*寻路算法广度优先BFS算法深度优先DFS算法]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[lnmp环境搭建]]></title>
+    <url>%2F2017%2F12%2F25%2Flinux-nginx-mysql-php%2F</url>
+    <content type="text"><![CDATA[lnmp环境搭建安装前准备，首先centOS能够联网，本文介绍的安装基于centOS7.5 安装nginx123456789101112131415161718192021222324# cd /# mkdir -p /home/tgz# cd /home/tgz# yum install wget# yum install pcre# yum install openssl*# yum install tar# yum -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel krb5 krb5-devel libidn libidn-devel openssl openssl-devel openldap openldap-devel nss_ldap openldap-clients openldap-servers make gd gd2 gd-devel gd2-devel# wget https://ftp.pcre.org/pub/pcre/pcre-8.36.tar.gz# wget http://zlib.net/zlib-1.2.11.tar.gz# wget http://nginx.org/download/nginx-1.9.8.tar.gz# tar zxvf pcre-8.36.tar.gz# tar zxvf zlib-1.2.11.tar.gz# tar zxvf nginx-1.9.8.tar.gz# cd nginx-1.9.8# ./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-pcre=../pcre-8.36 --with-zlib=../zlib-1.2.11# make &amp;&amp; make install# cd /usr/local/nginx开启nginx服务# sbin/nginx终止nginx 服务# sbin/nginx -s stop 安装PHP 并配置fpm与nginx通信12345678910111213141516171819202122# cd /home/tgz# wget http://mirrors.sohu.com/php/php-7.2.0.tar.gz # tar zxvf php-7.2.0.tar.gz# cd php-7.2.0# ./configure --prefix=/usr/local/php-fpm --enable-fpm --with-zlib --with-pdo-mysql --with-mysql --with-gd --with-png-dir=/usr/lib64 --with-jpeg-dir=/usr/lib64 --with-freetype-dir=/usr/lib64 --enable-memcache# make &amp;&amp; make install# cd /usr/local/php-fpm# cp etc/php-fpm.conf.default etc/php-fpm.confphp7.0版本特有# cp etc/php-fpm.d/www.conf.default www.conf 开启php-fpm服务# sbin/php-fpm验证是否开启服务# ps -e | grep php-fpm配置nginx通信php-fpm# cd /usr/local/nginx/conf修改nginx配置文件 见图2-1# vi nginx.conf重启nginx# cd /usr/local/nginx# sbin/nginx -s stop# sbin/nginx 图2-1 安装mysql12345678910111213141516171819202122232425# yum install cmake# cd /home/tgz# wget http://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.6/mysql-5.6.37.tar.gz# tar zxvf mysql-5.6.37.tar.gz# cd mysql-5.6.37# cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data# make &amp;&amp; make install# cd /usr/local/mysql# groupadd mysql# useradd -r -g mysql mysql# chown -R mysql .# chgrp -R mysql .删除可能的旧的/etc/my.cnf# rm -f /etc/my.cnf# ./scripts/mysql_install_db --user=mysql# chown -R root .# chown -R mysql data# cp support-files/my-default.cnf /etc/my.cnf启动mysqld：# bin/mysqld_safe --user=mysql &amp;守护进程# cp support-files/mysql.server /etc/init.d/mysqld修改配置文件 见图3-1# vi /etc/init.d/mysqld 图3-1]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Docker 制作centos下lnmp环境]]></title>
+    <url>%2F2017%2F12%2F09%2FDocker-setting%2F</url>
+    <content type="text"><![CDATA[偶然间在朋友圈看到猿友在研究Docker，于是不甘落后的我开始了疯狂百度，准备在逼格上超过他，以下便是我的探索之路 一、百度的力量百度提供的Docker解释 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。 菜鸟教程Docker安装nginx Docker的应用场景 二、安装Docker本文介绍安装的docker是基于VMware虚拟机下64位的centOS-7.4，当然保证系统能联网，yum正常使用。具体流程详见菜鸟教程Docker安装nginx 12# uname -r# yum -y install docker 出现 Complete! 恭喜你安装成功 三、下载centos7镜像docker pull命令是从远程下载镜像的命令,此处下载镜像目的是让我新创建的容器要运行在centOS下,这里docker pull的地址是从https://hub.docker.com 搜索获取的 123# service docker start# docker pull openshift/base-centos7# docker images 四、运行容器容器里运行1# docker run -i -t openshift/base-centos7 /bin/bash 接着就是在容器里安装lnmp，详情请参考lnmp环境搭建安装完成后1# exit 五、生成镜像查看刚才运行的容器ID1# docker ps -lq 提交生成新的镜像 注：这里的489d2 是任意去的上一步操作中id的前5位1# docker commit 489d2 vckai/dev:v1 查看所有镜像1# docker images 六、启动镜像1# docker run -d -p 80:80 -v /web:/data/www vckai/dev:v1 /sbin/init -d是以Daemon模式运行。-p 80:80 是将本地80端口映射到容器的80端口，现在可以在本地使用http://localhost访问-v /web:/data/www 是将本地的/web目录挂载到容器的/data/www(容器配置的web目录)目录下。vckai/dev:v1 是要运行的镜像名称。 /sbin/init 是容器运行后的系统初始化操作，主要用于启动nginx，php-fpm，mysql服务。 查看docker运行中的镜像 1# docker ps 停止/重启/kill/启动容器 1# docker stop/restart/kill/start &lt;ID/Name&gt; 参考资料Docker创建centos的LNMP镜像]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[linux服务器自动备份mysql数据库]]></title>
+    <url>%2F2017%2F12%2F09%2FLinux-aoto-backup-database%2F</url>
+    <content type="text"><![CDATA[mysql数据库的备份有很多种，本文主要介绍系统级别的数据库备份，实现每天凌晨3:00保存一份数据库文件，自动删除30天以前的数据库备份文件 具体流程1、创建当前备份文件夹（存储当天的备份文件）# cd /home # mkdir backup 2、创建累积备份文件夹（存取一个月内的所有备份文件）# mkdir oldback 3、创建脚本文件# touch backup.sh 4、编辑back.sh文件# vi backup.sh backup.sh文件内容 保存并退出 #!bin/bash cd /home/backup echo &quot;You are In Backup Directory&quot; mv backup* /home/oldbackup echo &quot;Old Databases are Moved to oldbackup folder&quot; Now=$(date +&quot;%d-%m-%Y--%H:%M:%S&quot;) File=backup-$Now.sql mysqldump -u用户名 -p密码 -x 你的数据库名 &gt; $File echo &quot;Your Database Backup Successfully Completed&quot; find /home/oldbackup/ -mtime +30 -name &quot;*.sql&quot; -exec rm -rf {} \; echo &quot;Clear Successfully &quot; cd / 5、修改backup.sh的权限# chmod +x /backup.sh 6、设置linux定时任务# crontab -e 0 3 * * * root . /home/backup.sh 注意（系统级的）做系统级配置我们会直接配置 /etc/crontab （用户级的）一般还是建议大家使用 crontab -e ，这样系统也会帮着检查我们配置的脚本语法。]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[php实现微信扫码下载apk]]></title>
+    <url>%2F2017%2F12%2F09%2FPHP-weixin-download-app%2F</url>
+    <content type="text"><![CDATA[因项目需求要搞一个微信扫码下载应用的功能，毕竟大多数人的手机上微信还是比较常见的，比用浏览器扫码用户体验好的多 具体思路 1、服务器的提供下载应用接口 2、借助第三方产生二维码 3、微信扫码浏览器打开 实现步骤1、PHP接口 服务器php下载方法 用于生产验证码的方法名 微信的内置浏览器是无法实现下载应用的，所以需要对微信浏览器单独处理，这里提供一个引导页面（这里的引导页面为一张带箭头的图片，追求完美的可以提供H5页面）指向扫码后的更多选项，选择在浏览器中打开 1234567891011121314151617181920 /** * Description: 下载文件方法 */public function loadApk()&#123; //获取文件名称 实际操作中 查数据库获取最新版本的文件名 $file_name = 'test.apk'; //文件路径 $file_dir = 'upload/soft/'; //判断是否是微信浏览器访问 如果是则提供引导页面 引导页面 if($this-&gt;is_weixin())&#123; echo '&lt;style&gt;body&#123; margin:0; padding:0; background: #222221;&#125;&lt;/style&gt;'; echo '&lt;div style=" height:100%;background-image:url(/static/Index/images/download.png); background-size: 100%;background-repeat: no-repeat;"&gt;&lt;/div&gt;'; die; &#125; //输出文件 $this-&gt;sendStreamFile($file_name,$file_dir);&#125; php实现文件流下载方法 1234567891011121314151617181920212223242526 /** php 发送流文件 * @param $file_name String $url 接收的路径 * @param $file_dir String $file 要发送的文件 * @return boolean */ private function sendStreamFile($file_name, $file_dir)&#123; //检查文件是否存在 if (! file_exists ( $file_dir . $file_name )) &#123; echo "文件找不到"; exit (); &#125; else &#123; //打开文件 $file = fopen ( $file_dir . $file_name, "r" ); //输入文件标签 Header ( "Content-type: application/octet-stream" ); Header ( "Accept-Ranges: bytes" ); Header ( "Accept-Length: " . filesize ( $file_dir . $file_name ) ); Header ( "Content-Disposition: attachment; filename=" . $file_name ); //输出文件内容 //读取文件内容并直接输出到浏览器 echo fread ( $file, filesize ( $file_dir . $file_name ) ); fclose ( $file ); exit (); &#125; &#125; 微信浏览器验证 123456789//判断微信浏览器function is_weixin()&#123; if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) &#123; return true; &#125; return false;&#125; 2、生成验证码 验证码生成器 网上有很多 以草料为例 3、扫一扫测试一下]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[github上搭建自己的个人主页]]></title>
+    <url>%2F2017%2F12%2F09%2FGitHub-build-personal-page%2F</url>
+    <content type="text"><![CDATA[穷屌丝们的春天，程序员应该活的精致一些。一直想有一个拿得出台面的东西，所以最近研究了一下github的个人主页。从无到有，搜寻了很多资料搞了两天（课后时间）觉得网上的搭建个人主页的教程太随意。于是做一下的总结，只愿大家少走弯路 具体步骤如下1、准备工作：github账号、git客户端、域名（一定是.com的）2、新建个人主页仓库进入GitHub后创建一个仓库，仓库的名字一定要起对，比如我的GitHub账号名称是veige所以我应该起 veige.github.io 3、git clone到本机添加index.html文件 //注意要换成自己的github仓库地址 git clone https://github.com/veige/veige.github.io.git找到自己克隆的文件地址，新建index.html &lt;!DOCTYPE html&gt; &lt;html&gt; &lt;head&gt; &lt;mate charest=&quot;utf-8&quot; /&gt; &lt;title&gt;Hello world!&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;Hello world!&lt;/h1&gt; &lt;/body&gt; &lt;/html&gt; 4、push到github打开git客户端并执行以下命令 git add . git commit -m &quot;初始化个人主页仓库&quot; git push 此时便可以通过浏览器访问index.html了，在浏览器输入 veige.github.io 如果此刻页面上出现Hello world! 那么恭喜你 你离成功很近了 5、域名解析域名解析耗费我很长时间，原因是图便宜买了一个.top的域名结果是一直不成功。迫不得已花了￥55在阿里买的.com域名，具体买域名的操作不做赘述 6、添加CNAME文件在与index.html同一级的目录下添加CNAME文件 我买的域名是itxuwei.com则只需要在CNAME文件里编辑一行我的网址即可 www.itxuwei.com 编辑完之后 push到github 即可用 www.itxuwei.com来访问个人主页 git add . git commit -m &quot;提交CNAME文件&quot; git push 推荐博客http://blog.csdn.net/qq_33699981/article/details/72716951]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+</search>
