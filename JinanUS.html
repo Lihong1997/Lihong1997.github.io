@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JinanUS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>关于本群（943823112）</h1>
+<p>1.主要由19届学长学姐创办暨大计算机考研交流群，主要宗旨是考上的学长学姐们反过来继续帮助下一届考生们，希望能够届届相传。群里的管理员都是已经考上的学长学姐，有问题尽量先看群文件，经验贴，然后再来问。
+2.群里的初试复试资料都是免费的，主要目的是为了创建一个开源环境，让考研就认认真真考。以后还会持续更新，进群的同学也把群名片改好，格式为“<strong>20-XXX</strong>”（注意短横线），群里会不定期清理未改群名片的同学。
+3.发广告、未改群名片会被踢出，恶意水群、刷屏、装逼钓鱼、影响其他人复习的，会视情况禁言或踢出。本着自由、和谐的原则，其他情况暂不会约束。PS：需要禁言套餐的可以在群里@某位管理员请求即可。</p>
+<h1>关于初试</h1>
+<ol>
+<li>历年报录比，和复试比
+（还在做）  
+</li>
+<li>考试科目（19年是这个）<br />
+计算机学硕：数据结构（830），数学一，英语一，政治<br />
+计算机专硕：数据结构（830），数学二，英语二，政治<br />
+软件工程学硕（没有专硕）：数据结构（830），数学一，英语一，政治<br />
+网络安全学硕（没有专硕）：数据结构（830）845抽象代数（二选一），数学一，英语一，政治（网安的复试略有不同，其他都是机试，网安是和代数二选一）</li>
+<li>复试标准
+这个暂时还不知道咋个评分，但是只要不乱发挥，面试70+没问题的。</li>
+<li>
+<p>志愿与调剂
+我也调剂了，感觉调剂很难受的，分数再高的双非都可能没人要，调剂第一看重的是能力，第二是本科，分数只是用来卡人的。尽量别调剂，努力考。（等你们以后调剂再过来添加细节）  
+</p>
+</li>
+<li>
+<p>。。。。后面还在想（需要几位同学来一起更新，采取群里的经典问题进行贴上来）</p>
+</li>
+</ol>
+<h1>关于复试</h1>
+<ol>
+<li>初试复试占总成绩占比详情<br />
+总成绩=初试（总分500）/2+复试（总分200）*1.25；复试=机试（100）+面试（100）；面试=英面（20）+专面（80）；</li>
+<li>初试完来准备复试来得及吗？<br />
+完全来得及，你甚至可以等到出成绩后再来准备，因为往年都是出成绩和复试隔了一个月。</li>
+<li>没有项目经历，没有奖项怎么办？<br />
+初试完准备复试的这段时间可以自己做个小项目，一来提高编程能力，二来可以对面试有帮助.</li>
+<li>关于四六级<br />
+四六级，最好过了吧！我面试的问了下我四级过没过，但是也有没过的选手。面试也没问他四级（那是因为他太强了，面试五分钟就放出来了）</li>
+<li>关于挂科，本科成绩过低的情况<br />
+我挂了一门，绩点是2.9吧。老师也没问，我也没给他们成绩单，给了简历，他们就使劲问简历上的，问的我头皮发麻。</li>
+<li>机试怎么做的问题<br />
+书：王道机试指南/算法笔记（胡凡）；<br />
+刷题网站：力扣/牛客网/pat乙级+甲级；（&quot;/&quot;代表或）</li>
+<li>英语面试怎么准备的问题<br />
+我面试的英语挺简单的，就是简单的常见问题，家乡啊，学校啊，但是有的面试组就很变态了，用英语问专业课，记得有个大佬被问了数字图像处理的英语问题。<br />
+关于怎么准备：自己准备几个常见的问题，如果不会就去淘宝买模板吧，嘿嘿！英语好的，就随机应变。我是英语菜鸡！建议仅供参考</li>
+</ol>
+<h1>关于研究生生活:</h1>
+<p>(过了这段比较忙的时间，我会采访几个学长，我自己入学了，也会更新一下重点)</p>
+<h1>其他问题</h1>
+<ol>
+<li>这是收集的19的经验贴（后面会陆续更新）
+欧神：<a href="https://zhuanlan.zhihu.com/p/61487164">https://zhuanlan.zhihu.com/p/61487164</a><br />
+菜鸡：<a href="https://zhuanlan.zhihu.com/p/61496000">https://zhuanlan.zhihu.com/p/61496000</a><br />
+杜神：<a href="http://www.cskaoyan.com/thread-654671-1-1.html">http://www.cskaoyan.com/thread-654671-1-1.html</a><br />
+黄神：<a href="http://www.cskaoyan.com/thread-654681-1-1.html">http://www.cskaoyan.com/thread-654681-1-1.html</a><br />
+陈神(这个是真学姐)：<a href="https://zhuanlan.zhihu.com/p/61841442">https://zhuanlan.zhihu.com/p/61841442</a><br />
+林神：<a href="https://mp.weixin.qq.com/s?__biz=MzI2OTk1MTg0MA==&amp;mid=2247483759&amp;idx=1&amp;sn=c6df9c2f8f857715f9c9b051819d3389&amp;chksm=ead93760ddaebe76b43bb33d1220c5fff508256aa9afae2cc8f9e96394ce9650e58e75042160&amp;mpshare=1&amp;scene=23&amp;srcid=#rd">https://mp.weixin.qq.com/s?__biz=MzI2OTk1MTg0MA==&amp;mid=2247483759&amp;idx=1&amp;sn=c6df9c2f8f857715f9c9b051819d3389&amp;chksm=ead93760ddaebe76b43bb33d1220c5fff508256aa9afae2cc8f9e96394ce9650e58e75042160&amp;mpshare=1&amp;scene=23&amp;srcid=#rd</a><br />
+袁神：<a href="https://zhuanlan.zhihu.com/p/61755774">https://zhuanlan.zhihu.com/p/61755774</a><br />
+郑神： <a href="http://www.cskaoyan.com/thread-654833-1-1.html">http://www.cskaoyan.com/thread-654833-1-1.html</a> <br />
+孙神：<a href="https://zhuanlan.zhihu.com/p/61931135">https://zhuanlan.zhihu.com/p/61931135</a><br />
+钟神：<a href="http://bbs.kaoyan.com/forum.php?mod=viewthread&amp;tid=9468950">http://bbs.kaoyan.com/forum.php?mod=viewthread&amp;tid=9468950</a><br />
+帅锅：<a href="https://zhuanlan.zhihu.com/p/61908552">https://zhuanlan.zhihu.com/p/61908552</a>  
+</li>
+<li>暨大19年这么炸？报这个学校还值得吗？<br />
+&lt;1&gt; 文科学校，工科弱，这是共识。但是地理位置好。女生也很多，走在暨大天河校区，路上10个人有9个女生。<br />
+&lt;2&gt;19哪个学校都炸，暨大只是分数炸，复试比还是很良心的，只有1：1.3，你看中大，1：2.3；这怎么玩，放这么多人进来复试。谁都可能被刷。炸的形式很多种，只是暨大的分数体现的比较直观。<br />
+&lt;3&gt;如果你看过今年调剂，就知道什么叫400遍地走，390多如狗。985，211调剂双非。都很正常。我本校二本，调剂线都划在350。今年炸的主要问题是人太多了。哪个学校都人多。<br />
+&lt;4&gt;最后一个忠告，量力而行，想找一个和你实力相当的学校，概率很低。</li>
+</ol>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
