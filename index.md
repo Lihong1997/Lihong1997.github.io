@@ -17,6 +17,9 @@
 * 222
 
 
-[百度一下](www.baidu.com)
+[百度一下][1]
 
-[暨南大学](./JinanUS.html)
+[暨南大学][2]
+
+[1]:www.baidu.com
+[2]:./JinanUS.html
