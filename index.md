@@ -23,6 +23,9 @@
 
 [大象书笔记][3]
 
+[java笔记][4]
+
 [1]:www.baidu.com
-[2]:./JinanUS.html
-[3]:./Elephant_notes.html
+[2]:./others/JinanUS.html
+[3]:./notes/Elephant_notes.html
+[4]:./notes/java_notes.html
