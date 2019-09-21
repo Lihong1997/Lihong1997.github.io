@@ -4,7 +4,7 @@
 **1** //粗体  
 ***1*** //粗斜体 
 
-***  
+***
 分割线
 
 # 一级标题
@@ -25,7 +25,11 @@
 
 [java笔记][4]
 
+[力扣笔记][5]
+
 [1]:www.baidu.com
 [2]:./others/JinanUS.html
 [3]:./notes/Elephant_notes.html
 [4]:./notes/java_notes.html
+[5]:./notes/leecode_notes.html
+
