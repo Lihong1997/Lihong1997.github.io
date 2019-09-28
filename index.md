@@ -29,10 +29,14 @@
 
 [Typora入门][6]
 
+[内核笔记][7]
+
 [1]:www.baidu.com
 [2]:./others/JinanUS.html
 [3]:./notes/Elephant_notes.html
 [4]:./notes/java_notes.html
 [5]:./notes/leecode_notes.html
-
 [6]:https://www.simon96.online/2018/10/18/Typora入门（中文版）/
+
+[7]:./notes/kernel_notes.html
+
