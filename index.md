@@ -63,10 +63,11 @@
 [6]:https://www.simon96.online/2018/10/18/Typora入门（中文版）/
 
 [7]:./notes/kernel_notes.html
-[8]:./algorithm_notes.html
-[9]:./book_notes.html
-[10]:./math_notes.html
-[11]:./paper_notes.html
-[12]:./python_notes.html
-[13]:./computer/computer_network.html
+[8]:./notes/algorithm_notes.html
+[9]:./notes/book_notes.html
+[10]:./notes/math_notes.html
+[11]:./notes/paper_notes.html
+[12]:./notes/python_notes.html
+
+[13]:./notes/computer_basic/computer_network.html
 
