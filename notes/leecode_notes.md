@@ -771,6 +771,292 @@ public:
 
 
 
+### 104.二叉树的深度
+
+**题目：**
+
+给定一个二叉树，找出其最大深度。
+
+二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+
+**说明:** 叶子节点是指没有子节点的节点。
+
+
+
+**示例：**
+
+给定二叉树 `[3,9,20,null,null,15,7]`，
+
+```
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+返回它的最大深度 3 。
+
+**分析：**
+
+1. 递归：
+
+   等于左子树和右子树最大高度+1
+
+2. 非递归：
+
+   层次遍历，利用两个队列，节点队列和高度队列
+
+   每次节点队列出队，高度队列出队
+
+   每次节点队列入队，高度队列入队元素等于节点队列入队元素父节点对应的高度队列元素+1
+
+**代码：**
+
+
+
+```c++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    /*递归
+    int maxDepth(TreeNode* root) {
+        return DFS(root);
+    }
+    int DFS(TreeNode* root){
+        if(root==NULL)return 0;
+        int left=DFS(root->left);
+        int right=DFS(root->right);
+        return (left>right?left:right)+1;
+    }
+    */
+    //非递归：层次遍历  维护两个队列。一个节点队列。一个层数队列
+    int maxDepth(TreeNode* root) {
+        if(root==NULL)return 0;
+        queue<TreeNode*> qNode;
+        queue<int> qInt;
+        TreeNode* q=root;
+        qNode.push(q);
+        int temp;
+        qInt.push(1);
+        int res=1;
+        while(!qNode.empty()){
+            q=qNode.front();
+            temp=qInt.front();
+            qNode.pop();qInt.pop();
+            if(q->left!=NULL){
+                qNode.push(q->left);
+                qInt.push(temp+1);
+            }
+            if(q->right!=NULL){
+                qNode.push(q->right);
+                qInt.push(temp+1);
+            }
+            if(!qInt.empty())res=qInt.front();
+        }
+        return res;
+    }
+};
+```
+
+### 108. 将有序数组转换为二叉搜索树
+
+**题目：**
+
+将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。
+
+本题中，一个高度平衡二叉树是指一个二叉树*每个节点* 的左右两个子树的高度差的绝对值不超过 1。
+
+**示例：**
+
+
+
+```
+给定有序数组: [-10,-3,0,5,9],
+
+一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：
+
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+```
+
+
+
+**分析：**
+
+1. 本身序列有序，只需用二分查找的方式进行插入
+2. 防止队栈溢出
+
+**代码：**
+
+
+
+```c
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+struct TreeNode* DFS(struct TreeNode *p,int low,int high,int* nums){
+    if(low>high)return NULL;
+    p=(struct TreeNode*)malloc(sizeof(struct TreeNode));
+    int mid=(low+high)/2;
+    p->val=nums[mid];
+    p->left=DFS(p->left,low,mid-1,nums);
+    p->right=DFS(p->right,mid+1,high,nums);
+    return p;
+}
+struct TreeNode* sortedArrayToBST(int* nums, int numsSize){
+    int low=0;int high=numsSize-1;
+    struct TreeNode* p=DFS(p,low,high,nums);
+    return p;
+}
+```
+
+## 深度优先搜索
+
+### 872. 叶子相似的树
+
+**题目：**
+
+请考虑一颗二叉树上所有的叶子，这些叶子的值按从左到右的顺序排列形成一个 *叶值序列* 。
+
+**示例：**
+
+![][2]
+
+举个例子，如上图所示，给定一颗叶值序列为 (6, 7, 4, 9, 8) 的树。
+
+如果有两颗二叉树的叶值序列是相同，那么我们就认为它们是 叶相似 的。
+
+如果给定的两个头结点分别为 root1 和 root2 的树是叶相似的，则返回 true；否则返回 false 。
+
+ **分析：**
+
+1. 采用递归的形式将叶子节点从左至右存入数组，最后比对数组
+
+2. 采用前中后序任意一种非递归的形式，计算出叶子节点，存入数组，最后比对数组
+
+   
+
+**代码：**
+
+
+
+```c++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        vector<int>root1Array,root2Array;
+        getleafArray(root1,root1Array);
+        getleafArray(root2,root2Array);
+        return isEqual(root1Array,root2Array);
+    }
+    void getleafArray(TreeNode* root,vector<int> &rootArray){
+        if(root->left==NULL&&root->right==NULL){
+            rootArray.push_back(root->val);
+            return;
+        }else{
+            if(root->left!=NULL)getleafArray(root->left,rootArray);
+            if(root->right!=NULL)getleafArray(root->right,rootArray);
+        }
+    }
+    bool isEqual(vector<int> array1,vector<int> array2){
+        if(array1.size()!=array2.size())return false;
+        for(int i=0;i<array1.size();i++){
+            if(array1[i]!=array2[i])return false;
+        }
+        return true;
+    }
+};
+```
+
+### 100.相同的树
+
+
+
+**题目：**
+
+给定两个二叉树，编写一个函数来检验它们是否相同。
+
+如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的
+
+**示例：**
+
+
+
+```c++
+输入:       1         1
+          / \       / \
+         2   3     2   3
+
+        [1,2,3],   [1,2,3]
+
+输出: true
+
+输入:      1          1
+          /           \
+         2             2
+
+        [1,2],     [1,null,2]
+
+输出: false
+```
+
+**分析：**
+
+用递归遍历两个树相同位置的节点，如果不相等，或者其中有个不存在，则返回false
+
+**代码：**
+
+
+
+```c++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==NULL&&q==NULL)return true;
+        if(p!=NULL&&q!=NULL&&p->val==q->val)
+            return isSameTree(p->left,q->left)&isSameTree(p->right,q->right);
+        else return false;
+    }
+};
+```
+
 
 
 [1]:bst-tree.png
+[2]:tree.png

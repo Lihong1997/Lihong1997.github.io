@@ -31,6 +31,30 @@
 
 [内核笔记][7]
 
+[算法笔记][8]
+
+[读物笔记][9]
+
+[数学笔记][10]
+
+[论文idea][11]
+
+[python笔记][12]
+
+[计算机网络笔记][13]
+
+# **你好**
+
+
+
+```
+
+```
+
+## 你好
+
+######
+
 [1]:www.baidu.com
 [2]:./others/JinanUS.html
 [3]:./notes/Elephant_notes.html
@@ -39,4 +63,10 @@
 [6]:https://www.simon96.online/2018/10/18/Typora入门（中文版）/
 
 [7]:./notes/kernel_notes.html
+[8]:./algorithm_notes.html
+[9]:./book_notes.html
+[10]:./math_notes.html
+[11]:./paper_notes.html
+[12]:./python_notes.html
+[13]:./computer/computer_network.html
 
